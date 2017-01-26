@@ -3,6 +3,7 @@
 **Introduction to Service Design and Engineering | University of Trento |** 
 
 **Name:** DUC MANH HOANG
+
 **ID No.:** MAT.180387
 
 ##1. Introduction
@@ -14,11 +15,17 @@ Furthermore, there is a motivation service that will provide the motivating quot
 There are some conceptualized entities related to our service systems. They are the most important information entities that will take the roles for tracking user's health progresses:
 
 **Person:** contains the attributes describing the personal informations non changing in the future time such as: name, birth date, gender and etc.
+
 **Health Measure:** contains the measurement attributes such as weight, height, age, BMI (Body mass index), BMR (Basal metabolic rate). These attribute can change at a time of the future. Depending on the BMI and BMR indexes, Virtual Lifestyle Coach will suggest to users their goals contains the ideal indexes such as weight ideal.
+
 **Health Measure History:** contains the measurement attributes to be the same Health Measure but its figures consider as the past time. It provides the good tracking of users' health status changed.
+
 **Activity:** contains the attributes showing the informations of a particular activity. The vital figure is the number of calories burnt per one hour.
+
 **Food:** contains the attributes presenting the informations of a particular recipe. We will care about the number of calories eaten per one recipe.
+
 **Goal:** is the essential entity to the system. It is depended on the Health Measure figure to produce the goal figure in Goal. Its important measurement attributes are ideal weight, ideal BMI, and shaved calories.
+
 **Motivation:** contains the phrase to motivate the target users to help user gain their confidence.
 
 From the above conception, we will have good imagine for data model look like.
@@ -28,12 +35,19 @@ From the above conception, we will have good imagine for data model look like.
 Depending on the conceptual components, the data models will be designed as follows:
 
 **Person:** The model keeps the information about a user.
+
 **Health Measure:** The model keeps information about the current health status of a user.
+
 **Health Measure History:** The model keeps information about the historical health status of a user.
+
 **Goal:** The model keeps information about the ideal indexes, selected activities, selected foods during of one day time.
+
 **Food Selection:** The model keeps information about a recipe that user have selected to eat. It is also describing the eaten calories.
+
 **Activity Selection:** The model keeps information about a activity that user have selected to play. It is also describing the time of user's playing on it and the burnt calories of user for that activity.
+
 **Activity:** The model keeps information about a pure activity describing the number of calories to be burnt per one hour.
+
 **Other models,** Measure Definition and Measure Range are designed to supported the Health Measure and Health Measure History.
 
 **Entity-Relationship Diagram**
@@ -48,7 +62,9 @@ There will be 3 main components to be User interface, Business logic, and Data r
 It contains the basic services for permanently storeing data entities and offers basic CRUD functionalities.  Each persistence unit uses JPA and SQLite to store model instances and offers RESTful communication. Addition, we will allocate a adapter service purposing to connect and transform data of external services to suitable data model of our own model.
 
 **Local Database Service:**  is a RESTful service. Basically, it provides the interacting operation with the main database containing the above models described in section 2. It provides basic CRUD functionalities. We can call it as a connecting API between the above service to a under database.
+
 **Adapter Service:** is a RESTful service. It is a bridge between the internal services and other external services (for example: recipe of food in this case). It is also a transformer to convert data model of external services become a compatible data sources for our internal data model (for example: we will map recipe foods of the api.edamam.com into recipe foods of our model in this case). It is also considered as a connector of our internal services to other external services.
+
 **Storage Service:** is a top service of Data resources block and provides RESTful communication. It groups all the functionalities of Data resources bock with purpose to centralize the Data resources layer. All queries from above services of other above layers will have to pass through this storage service.
 
 ###3.2. System Logics
